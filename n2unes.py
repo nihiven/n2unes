@@ -29,17 +29,18 @@ display_matches_line_numbers = True # display line number in match results
 play_matches_mode = 'random' # first, random # TODO: implement
 play_matches_type = 'flac' # filetype to prefer or False # TODO: implement
 
-options = [	['queue_clear', 'True/False', 'Clear queue after each search'],
-						['queue_matches', 'True/False', 'If a search has multiple results, queue them'],
-						['queue_matches_MAX', 'Int', 'The maximum number of matches to queue'], 
-						['display_matches', 'True/False',''],
-						['display_matches_MAX','Int','The total number of matches to display'],
-						['display_matches_totals','True/False','Display the total number of matches if more than display_matches_MAX'],
-						['display_matches_fullpath','True/False','Display a the full path when showing file matches'],
-						['display_matches_line_numbers','True/False','Display line numbers when showing matches'],
-						['play_matches_mode','first/random',''],
-						['play_matches_type','filetype extension','Prefer the given file type when there are multiple matches']
-						]
+options = [	
+	['queue_clear', 'True/False', 'Clear queue after each search'],
+	['queue_matches', 'True/False', 'If a search has multiple results, queue them'],
+	['queue_matches_MAX', 'Int', 'The maximum number of matches to queue'],
+	['display_matches', 'True/False',''],
+	['display_matches_MAX','Int','The total number of matches to display'],
+	['display_matches_totals','True/False','Display the total number of matches if more than display_matches_MAX'],
+	['display_matches_fullpath','True/False','Display a the full path when showing file matches'],
+	['display_matches_line_numbers','True/False','Display line numbers when showing matches'],
+	['play_matches_mode','first/random',''],
+	['play_matches_type','filetype extension','Prefer the given file type when there are multiple matches']
+]
 
 
 ## NOW FOR SOME FUNCTIONS
@@ -196,7 +197,7 @@ def command_query(data):
 	query = data.replace(' ','*')
 	query = '*' + query + '*'
 
-	global matches 
+	global matches
 	matches = fnmatch.filter(music, query)
 
 	if (len(matches) > 0):
