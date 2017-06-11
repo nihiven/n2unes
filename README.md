@@ -1,5 +1,5 @@
 # n2unes
-command line music helper
+command line music playing front end, written in python 3
 ## Options (set within script)
 - queue_clear = True # clear queue for each search
 - queue_matches = True # queue multiple seaerch results
