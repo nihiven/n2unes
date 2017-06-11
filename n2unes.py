@@ -1,3 +1,5 @@
+# NOTE: This is written for Python 3
+# NOTE: Set your foorbar2000 and music paths before running
 # TODO: save options to file
 
 # imports
@@ -29,7 +31,7 @@ display_matches_line_numbers = True # display line number in match results
 play_matches_mode = 'random' # first, random # TODO: implement
 play_matches_type = 'flac' # filetype to prefer or False # TODO: implement
 
-options = [	
+options = [
 	['queue_clear', 'True/False', 'Clear queue after each search'],
 	['queue_matches', 'True/False', 'If a search has multiple results, queue them'],
 	['queue_matches_MAX', 'Int', 'The maximum number of matches to queue'],
@@ -76,7 +78,7 @@ def display_list(list):
 	l = len(list)
 	if (display_matches and l > 0):
 		if (display_matches_totals and display_matches_MAX < l):
-			print 'Top', display_matches_MAX, 'of', str(l), 'matches'
+			print('Top', display_matches_MAX, 'of', str(l), 'matches')
 
 		i = 0 # current index in list
 		while (i < display_matches_MAX and i < l):
@@ -94,7 +96,7 @@ def display_list(list):
 				output_string = output_string + ntpath.basename(list[i])
 
 			# print output and set vars
-			print output_string
+			print(output_string)
 			i = i + 1
 #display_list()
 
@@ -109,7 +111,7 @@ def index_files():
 	global music
 	music = []
 
-	print 'indexing files in', len(music_paths), 'directories'
+	print('indexing files in', len(music_paths), 'directories')
 	for path in music_paths:
 		i = 0
 		for root, dirs, files in os.walk(path):
@@ -117,7 +119,7 @@ def index_files():
 				if file.endswith(('.mp3','.mpc','ogg','.m4a','.aac','.m3u','.fpl','.flac','.wav')):
 					music.append(os.path.join(root, file))
 					i = i + 1
-		print ' ' + path + ':', i, 'files'
+		print(' ' + path + ':', i, 'files')
 #index_files()
 
 
@@ -128,10 +130,10 @@ def save_index():
 		f = open('music.idx', 'w')
 		encoded = json.dump(music, f, encoding="latin-1")
 		f.close()
-		print 'wrote index to disk'
+		print('wrote index to disk')
 		return True
-	except IOError, e:
-		print 'failed to write index to disk'
+	except (IOError, e):
+		print('failed to write index to disk')
 		return False
 #save_index()
 
@@ -142,9 +144,9 @@ def load_index():
 		f = open('music.idx', 'r')
 		music = json.load(f, encoding="latin-1")
 		f.close()
-		print 'loaded index from file'
+		print('loaded index from file')
 		return True
-	except IOError, e:
+	except(IOError, e):
 		return False
 #load_index()
 
@@ -204,14 +206,14 @@ def command_query(data):
 		queue_list(matches)
 		display_list(matches)
 	else:
-		print 'No matches for:', query
+		print('No matches for:', query)
 #command_query()
 
 
 def command_info():
-	print music_paths
-	print str(len(music)), 'files indexed'
-	print str(len(matches)), 'matches in memory'
+	print(music_paths)
+	print(str(len(music)), 'files indexed')
+	print(str(len(matches)), 'matches in memory')
 #command_info()
 
 
@@ -220,7 +222,7 @@ def command_match(index):
 	global matches
 	index = int(index)
 	if (index < len(matches)):
-		print matches[index] # TODO: implement
+		print(matches[index]) # TODO: implement
 	else:
 		error('match',['No such index',index])
 #command_match()
@@ -261,8 +263,8 @@ def command_set_values(item):
 
 # we'll fix this up later
 def error(cmd, data):
-	print 'Error'
-	print cmd, data
+	print('Error')
+	print(cmd, data)
 #error()
 
 
@@ -274,11 +276,11 @@ if (load_index() == False): # try to load index from disk
 	index_files() # create a new one if it fails
 	save_index()
 
-print ''
+print('')
 
 ## main loop, read input and process
 while (1):
-	command = str(raw_input("n2unes: "))
+	command = str(input("n2unes: "))
 	if (parse_command(command) == False):
 		break
-	print ''
+	print('')
