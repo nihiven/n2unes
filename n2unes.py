@@ -13,8 +13,8 @@ import json
 
 ## config
 # paths
-foobar_path = 'C:\\Program Files (x86)\\foobar2000\\foobar2000.exe'
-music_paths = ['e:\\mp3','e:\\downloads\\torrents\\music']
+foobar_path = 'C:\\Programs\\foobar2000\\foobar2000.exe'
+music_paths = ['f:\\mp3']
 
 music = [] # global list of indexed music
 matches = [] # global list of matches from the latest query
@@ -128,11 +128,11 @@ def save_index():
 		global music
 		# save list to disk
 		f = open('music.idx', 'w')
-		encoded = json.dump(music, f, encoding="latin-1")
+		json.dump(music, f)
 		f.close()
 		print('wrote index to disk')
 		return True
-	except (IOError, e):
+	except IOError:
 		print('failed to write index to disk')
 		return False
 #save_index()
@@ -146,7 +146,7 @@ def load_index():
 		f.close()
 		print('loaded index from file')
 		return True
-	except(IOError, e):
+	except IOError:
 		return False
 #load_index()
 
