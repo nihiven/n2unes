@@ -1,0 +1,36 @@
+"""Configuration settings for n2unes music player."""
+
+# Paths
+FOOBAR_PATH = "C:\\Program Files\\foobar2000\\foobar2000.exe"
+MUSIC_PATHS = ["C:\\Users\\Username\\Music", "D:\\Music"]
+DATABASE_FILE = "n2unes.db"
+
+# Queue Options
+QUEUE_CLEAR = True
+QUEUE_MATCHES = True
+QUEUE_MATCHES_MAX = 50
+
+# Display Options
+DISPLAY_MATCHES = True
+DISPLAY_MATCHES_MAX = 50
+DISPLAY_MATCHES_TOTALS = True
+DISPLAY_MATCHES_FULLPATH = False
+DISPLAY_MATCHES_LINE_NUMBERS = True
+
+# Playback Options
+PLAY_MATCHES_MODE = "random"  # 'first' or 'random'
+PLAY_MATCHES_TYPE = "flac"  # preferred file type or False
+
+# Supported audio file extensions
+AUDIO_EXTENSIONS = (
+    ".mp3",
+    ".mpc",
+    ".ogg",
+    ".m4a",
+    ".aac",
+    ".m3u",
+    ".fpl",
+    ".flac",
+    ".wav",
+)
+
